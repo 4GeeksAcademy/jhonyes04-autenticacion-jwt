@@ -1,15 +1,23 @@
-import { Outlet } from "react-router-dom/dist"
+import { Outlet } from "react-router-dom"
 import ScrollToTop from "../components/ScrollToTop"
 import { Navbar } from "../components/Navbar"
 import { Footer } from "../components/Footer"
+import { ToastContainer } from 'react-toastify'
 
 // Base component that maintains the navbar and footer throughout the page and the scroll to top functionality.
 export const Layout = () => {
     return (
         <ScrollToTop>
-            <Navbar />
-                <Outlet />
-            <Footer />
+            <div className="d-flex flex-column min-vh-100">
+                <div className="sticky-top">
+                    <Navbar />
+                </div>
+                <div className="flex-grow-1">
+                    <Outlet />
+                </div>
+                <Footer />
+                <ToastContainer />
+            </div>
         </ScrollToTop>
     )
 }
