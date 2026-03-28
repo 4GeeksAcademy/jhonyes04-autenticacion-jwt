@@ -17,7 +17,7 @@ export const Profile = () => {
     }, [])
     return (
         <div className="container mt-5">
-            <div className="card col-3 mx-auto">
+            <div className="card col-5 mx-auto">
                 <div className="card-header">
                     <h5 className="card-text">Perfil de usuario</h5>
                 </div>

@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { register } from "../services/api"
 import { useState } from "react"
 import { toast } from 'react-toastify'
 
 export const Register = () => {
+    const navigate = useNavigate()
     const [inputs, setInputs] = useState({
         email: '',
         password: '',
@@ -32,15 +33,17 @@ export const Register = () => {
             toast.success(
                 <>
                     <span>¡Registro completado!</span>
-                    <br />
-                    <Link to={'/login'} className="btn btn-sm btn-light mt-2">Ir al Login</Link>
                 </>,
                 {
                     position: 'top-center',
-                    autoClose: false,
+                    autoClose: 2000,
                     closeOnClick: true
                 }
             )
+
+            setTimeout(() => {
+                navigate('/login')
+            }, 3000)
             setInputs({
                 email: '',
                 password: '',
