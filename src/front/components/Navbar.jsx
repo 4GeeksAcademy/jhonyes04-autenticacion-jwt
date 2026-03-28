@@ -26,7 +26,24 @@ export const Navbar = () => {
 				</Link>
 				<div className="ml-auto">
 					{logueado ? (
-						<button onClick={handleClickLogout} className="btn btn-danger">Cerrar sesión</button>
+						<div className="dropdown">
+							<button
+								type="button"
+								id="dropdownMenu"
+								className="btn btn-outline-dark dropdown-toggle"
+								data-bs-toggle="dropdown"
+								aria-expanded='false'
+							>
+								Mi cuenta
+							</button>
+
+							<div id="dropdownMenu" className="dropdown-menu dropdown-menu-end">
+								<Link to={'/profile'} className="dropdown-item">Ver perfil</Link>
+								<hr className="dropdown-divider" />
+								<button onClick={handleClickLogout} className="dropdown-item text-danger">Cerrar sesión</button>
+							</div>
+						</div>
+
 					) : (
 						<div className="d-flex gap-2">
 							<Link to={'/login'} className="btn btn-outline-dark">Iniciar sesión</Link>

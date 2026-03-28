@@ -21,6 +21,7 @@ flask-jwt-extended = "*"
 wtforms = "==3.1.2"
 sqlalchemy = "*"
 bcrypt = "*"
+colorama = "*"
 
 [requires]
 python_version = "3.13"
