@@ -18,9 +18,8 @@ export const Navbar = () => {
 	}
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+		<nav className="navbar navbar-expand-lg navbar-light bg-light">
 			<div className="container">
-				{/* Brand */}
 				<Link className="navbar-brand fw-bold d-flex align-items-center gap-2" to="/">
 					<span className="fw-bold fs-3">JWT</span> <span className="text-primary">jhonyes04</span>
 				</Link>
