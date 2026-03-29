@@ -19,7 +19,7 @@ export const Home = () => {
 	}
 	return (
 		<>
-			<header className="bg-dark text-white py-5 shadow">
+			<header className="bg-dark bg-gradient text-white">
 				<div className="container px-5">
 					<div className="row gx-5 align-items-center justify-content-center">
 						<div className="col-lg-8 col-xl-7 col-xxl-6">
@@ -47,7 +47,7 @@ export const Home = () => {
 											<Link className="btn btn-primary btn-lg px-4 me-sm-3" to="/register">
 												<i className="fa-solid fa-user-plus me-2"></i>Empezar ahora
 											</Link>
-											<Link className="btn btn-outline-light btn-lg px-4" to="/login">
+											<Link className="btn btn-light btn-lg px-4" to="/login">
 												<i className="fa-solid fa-right-to-bracket me-2"></i>Iniciar sesión
 											</Link>
 										</>
@@ -63,28 +63,25 @@ export const Home = () => {
 			</header>
 
 			<section>
-				<div className="container px-5 my-5 text-center">
-					<div className="row">
+				<div className="container px-5 py-4 text-center">
+					<div className="row mt-4">
 						<div className="col-lg-4 mb-5 mb-lg-0">
-							<div className="bg-primary bg-gradient text-white rounded-3 mb-3 d-inline-flex p-3">
+							<div className="bg-dark bg-gradient text-white rounded-4 p-4 d-inline-flex mb-2">
 								<i className="fa-solid fa-lock fs-4"></i>
 							</div>
 							<h2 className="h4 fw-bolder">Seguridad JWT</h2>
-							<p>Tus datos están protegidos mediante JSON Web Tokens cifrados, garantizando que solo tú tengas acceso.</p>
 						</div>
 						<div className="col-lg-4 mb-5 mb-lg-0">
-							<div className="bg-primary bg-gradient text-white rounded-3 mb-3 d-inline-flex p-3">
+							<div className="bg-dark bg-gradient text-white rounded-4 p-4 d-inline-flex mb-2">
 								<i className="fa-solid fa-bolt fs-4"></i>
 							</div>
 							<h2 className="h4 fw-bolder">Acceso Rápido</h2>
-							<p>Interfaz optimizada para una navegación fluida entre el registro, login y la gestión de tu perfil.</p>
 						</div>
 						<div className="col-lg-4">
-							<div className="bg-primary bg-gradient text-white rounded-3 mb-3 d-inline-flex p-3">
-								<i className="fa-solid fa-code fs-4"></i>
+							<div className="bg-dark bg-gradient text-white rounded-4 p-4 d-inline-flex mb-2">
+								<i className="fa-solid fa-laptop-code fs-4"></i>
 							</div>
 							<h2 className="h4 fw-bolder">API Moderna</h2>
-							<p>Construido sobre una arquitectura escalable lista para integrarse con cualquier servicio backend.</p>
 						</div>
 					</div>
 				</div>
