@@ -93,6 +93,7 @@ def login():
         expires_at = (datetime.now(timezone.utc) + timedelta(seconds = expires_in)).isoformat()
         
         return jsonify({
+            'user': usuario.serialize(),
             'msg': 'Login correcto',
             'token': token,
             "token_type": 'bearer',
