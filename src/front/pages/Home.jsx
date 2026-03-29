@@ -25,7 +25,7 @@ export const Home = () => {
 						<div className="col-lg-8 col-xl-7 col-xxl-6">
 							<div className="my-5 text-center text-xl-start">
 								<h1 className="display-5 fw-bolder mb-2">
-									Bienvenido a JWT <span className="text-primary">jhonyes04</span>
+									Bienvenid@
 								</h1>
 								<p className="lead fw-normal text-white-50 mb-4">
 									Una plataforma segura y rápida para gestionar tus datos con autenticación basada en tokens.
@@ -70,18 +70,21 @@ export const Home = () => {
 								<i className="fa-solid fa-lock fs-4"></i>
 							</div>
 							<h2 className="h4 fw-bolder">Seguridad JWT</h2>
+							<p className="text-muthed">Implementa mejores prácticas, protege tus sesiones y mitiga vulnerabilidades críticas en entornos de autenticación modernos.</p>
 						</div>
 						<div className="col-lg-4 mb-5 mb-lg-0">
 							<div className="bg-dark bg-gradient text-white rounded-4 p-4 d-inline-flex mb-2">
 								<i className="fa-solid fa-bolt fs-4"></i>
 							</div>
 							<h2 className="h4 fw-bolder">Acceso Rápido</h2>
+							<p className="text-muted">Configura tokens robustos, gestiona firmas digitales de forma eficiente y optimiza la protección de tus aplicaciones.</p>
 						</div>
 						<div className="col-lg-4">
 							<div className="bg-dark bg-gradient text-white rounded-4 p-4 d-inline-flex mb-2">
 								<i className="fa-solid fa-laptop-code fs-4"></i>
 							</div>
 							<h2 className="h4 fw-bolder">API Moderna</h2>
+							<p className="text-muted">Domina la implementación de JWT, asegura el intercambio de datos y blinda tus servicios contra accesos no autorizados.</p>
 						</div>
 					</div>
 				</div>

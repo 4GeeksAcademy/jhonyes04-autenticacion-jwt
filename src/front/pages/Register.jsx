@@ -136,7 +136,12 @@ export const Register = () => {
                                         </span>
                                         Registrando...
                                     </>
-                                ) : ("Regístrate")}
+                                ) : (
+                                    <>
+                                        <i className="fa-solid fa-user-plus me-2"></i>
+                                        Regístrate
+                                    </>
+                                )}
                             </button>
                         </div>
                         <p className="text-center text-muted m-0 mt-3">Tienes cuenta? Haz click <Link to='/login' className="fw-bold">aquí</Link> para acceder</p>

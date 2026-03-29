@@ -93,7 +93,12 @@ export const Login = () => {
                                         <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                                         Iniciando sesión...
                                     </>
-                                ) : ("Inciciar sesión")}
+                                ) : (
+                                    <>
+                                        <i className="fa-solid fa-right-to-bracket me-2"></i>
+                                        Iniciar sesión
+                                    </>
+                                )}
                             </button>
                         </div>
                         <p className="text-center text-muted m-0 mt-3">No tienes cuenta? Haz click <Link to='/register' className="fw-bold">aquí</Link> para registrarte</p>
