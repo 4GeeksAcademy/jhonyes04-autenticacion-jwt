@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 
 export const Register = () => {
     const navigate = useNavigate()
+    const [cargando, setCargando] = useState(false)
     const [inputs, setInputs] = useState({
         email: '',
         password: '',
@@ -26,30 +27,30 @@ export const Register = () => {
         if (inputs.password !== inputs.passwordConfirm)
             return toast.error("Las contraseñas no coinciden", { position: 'top-center' })
 
+        setCargando(true)
 
-        const usuarioGuardado = await register({ email: inputs.email, password: inputs.password })
+        try {
+            const usuarioGuardado = await register({ email: inputs.email, password: inputs.password })
 
-        if (usuarioGuardado) {
-            toast.success(
-                <>
-                    <span>¡Registro completado!</span>
-                </>,
-                {
-                    position: 'top-center',
-                    autoClose: 2000,
-                    closeOnClick: true
-                }
-            )
-
-            setTimeout(() => {
+            if (usuarioGuardado) {
                 navigate('/login')
-            }, 3000)
-            setInputs({
-                email: '',
-                password: '',
-                passwordConfirm: ''
+                setInputs({
+                    email: '',
+                    password: '',
+                    passwordConfirm: ''
+                })
+            } else {
+                setCargando(false)
+            }
+        } catch (error) {
+            setCargando(false)
+            toast.error("Hubo un error en el registro", {
+                position: 'top-center',
+                autoClose: 2000,
+                closeOnClick: true
             })
         }
+
     }
 
     return (
@@ -97,8 +98,20 @@ export const Register = () => {
                         </div>
                     </div>
                     <div className="card-footer">
-                        <div className="d-flex flex-column flex-md-row justify-content-center gap-2">
-                            <button type="submit" className="col-12 btn btn-primary">Regístrate</button>
+                        <div className="d-flex flex-column flex-md-row justify-content-center">
+                            <button
+                                type="submit"
+                                className="col-12 btn btn-primary"
+                                disabled={cargando}
+                            >
+                                {cargando ? (
+                                    <>
+                                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true">
+                                        </span>
+                                        Registrando...
+                                    </>
+                                ) : ("Regístrate")}
+                            </button>
                         </div>
                         <p className="text-center text-muted m-0 mt-3">Tienes cuenta? Haz click <Link to='/login' className="fw-bold">aquí</Link> para acceder</p>
                     </div>

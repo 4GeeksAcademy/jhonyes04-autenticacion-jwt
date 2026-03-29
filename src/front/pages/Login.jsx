@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 
 export const Login = () => {
     const navigate = useNavigate()
+    const [cargando, setCargando] = useState(false)
     const [inputs, setInputs] = useState({
         email: '',
         password: ''
@@ -22,12 +23,18 @@ export const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        setCargando(true)
+
         try {
             const data = await login(inputs)
 
-            if (data) navigate('/profile')
+            if (data)
+                navigate('/profile')
+            else
+                setCargando(false)
 
         } catch (error) {
+            setCargando(false)
             toast.error(
                 <span className="fw-bold">{error.message || 'Error al iniciar sesión'}</span>,
                 {
@@ -77,7 +84,18 @@ export const Login = () => {
                     </div>
                     <div className="card-footer">
                         <div className="d-flex flex-column flex-md-row justify-content-center gap-2">
-                            <button type="submit" className="col-12 btn btn-dark">Iniciar sesión</button>
+                            <button
+                                type="submit"
+                                className="col-12 btn btn-dark"
+                                disabled={cargando}
+                            >
+                                {cargando ? (
+                                    <>
+                                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                        Iniciando sesión...
+                                    </>
+                                ) : ("Inciciar sesión")}
+                            </button>
                         </div>
                         <p className="text-center text-muted m-0 mt-3">No tienes cuenta? Haz click <Link to='/register' className="fw-bold">aquí</Link> para registrarte</p>
                     </div>
