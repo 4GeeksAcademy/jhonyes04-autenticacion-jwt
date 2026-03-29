@@ -44,9 +44,6 @@ export const Login = () => {
                 }
             )
         }
-
-
-
     }
 
     return (
@@ -59,27 +56,29 @@ export const Login = () => {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="card-body d-flex flex-column gap-3">
-                        <div className="form-group">
-                            <label htmlFor="email" className="form-label fw-bold">Email</label>
+                        <div className="form-floating">
                             <input
                                 type="email"
                                 name="email"
                                 className="form-control"
+                                placeholder="Email"
                                 required
                                 value={inputs.email}
                                 onChange={handleChange}
                             />
+                            <label htmlFor="email">Email</label>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="password" className="form-label fw-bold">Contraseña</label>
+                        <div className="form-floating">
                             <input
                                 type="password"
                                 name="password"
                                 className="form-control"
+                                placeholder="Contraseña"
                                 required
                                 value={inputs.password}
                                 onChange={handleChange}
                             />
+                            <label htmlFor="password">Contraseña</label>
                         </div>
                     </div>
                     <div className="card-footer">

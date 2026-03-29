@@ -3,41 +3,73 @@ import { rutaProtegida } from "../services/api"
 import { toast } from 'react-toastify'
 
 export const Profile = () => {
-    const [perfil, setPerfil] = useState('')
+    const [perfil, setPerfil] = useState(null) // Inicializamos en null para manejo de carga
+
     useEffect(() => {
-        rutaProtegida().then((data) => {
-            setPerfil(data)
-        }).catch((error) => {
-            toast.error(error.message, {
-                position: 'top-center',
-                autoClose: 2000,
-                closeOnClick: true
+        rutaProtegida()
+            .then((data) => setPerfil(data))
+            .catch((error) => {
+                toast.error(error.message, { position: 'top-center', autoClose: 2000 });
             })
-        })
     }, [])
+
+    if (!perfil) return <div className="text-center mt-5"><span className="spinner-border"></span></div>
+
     return (
         <div className="container mt-5 px-3">
-            <div className="card col-12 col-md-8 col-lg-5 mx-auto border-0">
-                <div className="card-header bg-dark text-white border-0 py-3">
-                    <h5 className="card-title m-0 d-flex align-items-center">
-                        <i className="fa-solid fa-user-gear me-2"></i>
+            <div className="card col-12 col-md-10 col-lg-6 mx-auto border-0 shadow-lg">
+                <div className="card-header bg-dark text-white border-0 py-3 text-center">
+                    <h5 className="card-title m-0">
                         Perfil de Usuario
                     </h5>
                 </div>
 
-                <div className="card-body d-flex flex-column gap-2 p-4">
-                    <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center pb-2">
-                        <span className="fw-bold text-muted small text-uppercase">
-                            <i className="fa-solid fa-fingerprint me-2"></i>Id de usuario
-                        </span>
-                        <p className="bg-dark text-white rounded-pill px-4 py-1 m-0">{perfil.id}</p>
+                <div className="card-body p-4 bg-light">
+                    {/* Fila: ID */}
+                    <div className="row align-items-center mb-3">
+                        <div className="col-12 col-sm-4 text-muted small text-uppercase fw-bold">
+                            <i className="fa-solid fa-fingerprint me-2 text-dark"></i>ID Usuario
+                        </div>
+                        <div className="col-12 col-sm-8">
+                            <span className="bg-white border rounded px-3 py-1 w-100 d-block text-dark fw-semibold shadow-sm text-truncate">
+                                {perfil.id}
+                            </span>
+                        </div>
                     </div>
 
-                    <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center pb-2">
-                        <span className="fw-bold text-muted small text-uppercase">
-                            <i className="fa-solid fa-envelope me-2"></i>Email
-                        </span>
-                        <p className="bg-dark text-white rounded-pill px-4 py-1 m-0">{perfil.email}</p>
+                    {/* Fila: Nombre */}
+                    <div className="row align-items-center mb-3">
+                        <div className="col-12 col-sm-4 text-muted small text-uppercase fw-bold">
+                            <i className="fa-solid fa-user me-2 text-dark"></i>Nombre
+                        </div>
+                        <div className="col-12 col-sm-8">
+                            <span className="bg-white border rounded px-3 py-1 w-100 d-block text-dark fw-semibold shadow-sm">
+                                {perfil.firstname}
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Fila: Apellidos */}
+                    <div className="row align-items-center mb-3">
+                        <div className="col-12 col-sm-4 text-muted small text-uppercase fw-bold">
+                            <i className="fa-solid fa-id-card me-2 text-dark"></i>Apellidos
+                        </div>
+                        <div className="col-12 col-sm-8">
+                            <span className="bg-white border rounded px-3 py-1 w-100 d-block text-dark fw-semibold shadow-sm">
+                                {perfil.lastname}
+                            </span>
+                        </div>
+
+                    </div>
+                    <div className="row align-items-center mb-0">
+                        <div className="col-12 col-sm-4 text-muted small text-uppercase fw-bold">
+                            <i className="fa-solid fa-envelope me-2 text-dark"></i>Email
+                        </div>
+                        <div className="col-12 col-sm-8">
+                            <span className="bg-white border rounded px-3 py-1 w-100 d-block text-dark fw-semibold shadow-sm text-truncate">
+                                {perfil.email}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

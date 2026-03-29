@@ -3,17 +3,28 @@ import { tokenValido } from '../services/validarToken'
 import { useEffect, useState } from "react";
 
 export const Navbar = () => {
+	const [usuario, setUsuario] = useState(null)
 	const [logueado, setLogueado] = useState(false)
 	const location = useLocation()
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		setLogueado(tokenValido())
+		const isTokenValid = tokenValido()
+		setLogueado(isTokenValid)
+
+		if (isTokenValid) {
+			const currentUser = sessionStorage.getItem('user')
+
+			if (currentUser) setUsuario(JSON.parse(currentUser))
+		} else { setUsuario(null) }
+
 	}, [location])
 
 	const handleClickLogout = () => {
 		sessionStorage.removeItem('token')
 		sessionStorage.removeItem('token_expires_at')
+		sessionStorage.removeItem('user')
+		setUsuario(null)
 		navigate('/')
 	}
 
@@ -38,7 +49,7 @@ export const Navbar = () => {
 
 				<div className="collapse navbar-collapse" id="navbarNav">
 					<ul className="navbar-nav ms-auto mt-2 mt-lg-0 align-items-lg-center">
-						{logueado ? (
+						{logueado && usuario ? (
 							<li className="nav-item dropdown">
 								<button
 									className="btn btn-dark dropdown-toggle w-100 d-flex align-items-center justify-content-center"
@@ -48,7 +59,7 @@ export const Navbar = () => {
 									aria-expanded="false"
 								>
 									<i className="fa-solid fa-user-circle me-2"></i>
-									Mi cuenta
+									{usuario.firstname} {usuario.lastname}
 								</button>
 								<ul className="dropdown-menu dropdown-menu-end dropdown-menu-darke" aria-labelledby="dropdownMenu">
 									<li>

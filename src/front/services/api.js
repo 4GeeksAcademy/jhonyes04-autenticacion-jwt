@@ -26,16 +26,17 @@ export const login = async (usuario) => {
             body: JSON.stringify(usuario),
         });
 
-        if (!response.ok) throw new Error('Error al loguearse');
+        if (!response.ok) throw new Error('Email o contraseña incorrecta');
 
         const data = await response.json();
 
         sessionStorage.setItem('token', data.token);
         sessionStorage.setItem('token_expires_at', data.expires_at);
+        sessionStorage.setItem('user', JSON.stringify(data.user));
 
         return data;
     } catch (error) {
-        throw new Error('Error al loguearse');
+        throw new Error('Email o contraseña incorrecta');
     }
 };
 
@@ -54,6 +55,7 @@ export const logout = async () => {
 
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('token_expires_at');
+        sessionStorage.removeItem('user');
 
         return data;
     } catch (error) {
@@ -73,6 +75,7 @@ export const rutaProtegida = async () => {
         if (!response.ok) {
             sessionStorage.removeItem('token');
             sessionStorage.removeItem('token_expires_at');
+            sessionStorage.removeItem('user');
             throw new Error('Acceso restringido');
         }
 

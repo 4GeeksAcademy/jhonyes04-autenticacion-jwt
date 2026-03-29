@@ -41,11 +41,13 @@ def delete_users(user_id):
 @api.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
+    firstname = data['firstname']
+    lastname = data['lastname']
     email = data['email']
     password = data['password']
     
 
-    if not email or not password:
+    if not firstname or not lastname or not email or not password:
         return jsonify({'msg': 'Todos los datos son obligatorios'}), 400
     
     try:
@@ -58,6 +60,8 @@ def register():
         password_hash = bcrypt.hashpw(password.encode('utf-8'), salt)
 
         nuevo_usuario = User(
+            firstname=firstname,
+            lastname=lastname,
             email=email, 
             password=password_hash.decode('utf-8'), 
             is_active=True
@@ -86,7 +90,7 @@ def login():
         print(usuario)
         
         if not usuario or not bcrypt.checkpw(password.encode('utf-8'), usuario.password.encode('utf-8')):
-            return jsonify({'msg': 'Las credenciales o son correctas'}), 401
+            return jsonify({'msg': 'Las credenciales no son correctas'}), 401
         
         token = create_access_token(identity=str(usuario.id))
         expires_in = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES', 3600))
